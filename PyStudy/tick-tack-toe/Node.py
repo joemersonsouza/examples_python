@@ -1,4 +1,5 @@
 from State import State
+import Config
 
 class Node():
 
@@ -9,6 +10,8 @@ class Node():
         self.parent = None
         self.score = 0
         self.move = move
+        self.alpha = -float("inf")
+        self.beta = float("inf")
 
     def addChild(self, childNode):
         self.children.append(childNode)
@@ -24,4 +27,7 @@ class Node():
                 return child.move
         
         return self.move
-        
+    
+    def evaluateState(self):
+        currentDepth = (Config.maximumDepth - self.depth + 1)
+        return  currentDepth * self.state.evaluateState()

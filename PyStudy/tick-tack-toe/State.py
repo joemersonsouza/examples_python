@@ -41,13 +41,14 @@ class State:
 
             if(firstSquareValue != -1 and firstSquareValue == secondSquareValue) and \
                 secondSquareValue == thirdSquareValue:
-                endFlag = True
                 if(firstSquareValue == Config.computerPlayer):
+                    endFlag = True
                     winner = Config.computerPlayer
-                else:
+                    return endFlag, winner
+                if (firstSquareValue == Config.humanPlayer):
+                    endFlag = True
                     winner = Config.humanPlayer
-                
-                return endFlag, winner
+                    return endFlag, winner
 
         for i in range(Config.nSquares):
             for j in range(Config.nSquares):
@@ -129,6 +130,15 @@ class State:
 
     def evaluateState(self):
 
+        endFlag, winner = self.checkGoalState()
+        if endFlag:
+            if winner == Config.computerPlayer:
+                return 1000
+            elif winner == Config.humanPlayer:
+                return -1000
+            else:
+                return 0
+
         score = 0
 
         squareCoordinates = [
@@ -142,9 +152,9 @@ class State:
             [0,2,1,1,2,0]]
 
         scores = [0,
-        1,
-        10,
-        100]
+                    1,
+                    10,
+                    100]
 
         for lineIndex in range(len(squareCoordinates)):
             pointsOnLine = 0

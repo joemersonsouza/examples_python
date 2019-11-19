@@ -29,7 +29,7 @@ class MinimaxSearch():
 
     def minimax(self, node, depth, maxPlayerFlag, playerValue):
         if depth == 0:
-            node.score = node.state.evaluateState()
+            node.score = node.evaluateState()
             return node.score
         else:
             if maxPlayerFlag:
@@ -40,7 +40,7 @@ class MinimaxSearch():
             childStates, moves = node.state.successorFunction(playerValue)
 
             if len(childStates) == 0:
-                node.score = node.state.evaluateState()
+                node.score = node.evaluateState()
                 return node.score
             
             for index in range(len(childStates)):

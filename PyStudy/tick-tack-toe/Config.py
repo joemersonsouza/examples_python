@@ -1,9 +1,10 @@
-
+running = -1
 nSquares = 3
 
 moveTexts = ["X", "O"]
 
 startPlayer = 0
+withMinimax = False
 
 if startPlayer == 0:
     computerPlayer = 0
