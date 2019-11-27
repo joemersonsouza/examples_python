@@ -22,18 +22,6 @@ class EvolutionarySearch:
 
     def computeIndividualFitness(self, index, reward):
         self.fitness[index] += reward
-        #self.computeFitnessWheel()
-    
-    def computeFitnessWheel(self):
-
-        self.wheel = np.zeros((Config.maxPopulation, 1))
-        self.wheel[0] = self.fitness[0]
-
-        for index in range(1, Config.maxPopulation):
-            self.wheel[index] = self.wheel[index - 1 ] + self.fitness[index]
-
-        lastValue = self.wheel[Config.maxPopulation - 1]
-        self.wheel = self.wheel / lastValue
     
     def selectParents(self):
         index1 = np.argmax(self.fitness)
